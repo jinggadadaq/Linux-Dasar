@@ -1,178 +1,223 @@
 # **Pengaturan Dasar**
 
-### **1\. Mengatur hostname (nama host server)**
+## **1. Mengatur hostname (nama host server)**
 
-`# hostnamectl set-hostname <hostname>`
-
+```bash
+hostnamectl set-hostname <hostname>
+```
 Untuk mengganti nama host (hostname) sistem/server Anda.
 
-### **2\. Mengatur zona waktu (timezone)**
+## **2. Mengatur zona waktu (timezone)**
 
-`# timedatectl set-timezone Asia/Jakarta`
-
+```bash
+timedatectl set-timezone Asia/Jakarta
+```
 Untuk mengatur waktu sistem ke zona waktu Jakarta (WIB).
 
-### **3\. Pengaturan jaringan (IP statis)**
+## **3. Pengaturan jaringan (IP statis)**
 
-`# vim /etc/netplan/00-installer-config.yaml`
+```bash
+vim /etc/netplan/00-installer-config.yaml
+```
 
-`Contoh konfigurasi:`
+**Contoh konfigurasi:**
 
-`network:`  
-  `ethernets:`  
-    `enp0s3:`  
-      `dhcp4: false`  
-      `addresses: ['172.23.x.x/20']`  
-      `routes:`  
-        `- to: default`  
-          `via: 172.23.0.1`  
-      `nameservers:`  
-        `addresses: ['8.8.8.8']`  
-  `version: 2`
+```yaml
+network:
+  ethernets:
+    enp0s3:
+      dhcp4: false
+      addresses: ['172.23.x.x/20']
+      routes:
+        - to: default
+          via: 172.23.0.1
+      nameservers:
+        addresses: ['8.8.8.8']
+  version: 2
+```
+``` netplan apply ```
+netplan apply digunakan untuk menerapkan aturan jaringan di ubuntu.
+Mengatur IP statis, gateway, dan DNS pada Ubuntu Server menggunakan Netplan jangan lupa juga untuk interface yang di gunakan wajid disamakan dengan yang sudah ada sebelumnya.
 
-Mengatur IP statis, gateway, dan DNS pada Ubuntu Server menggunakan Netplan.
+# **Perintah Dasar Linux**
 
-## **Perintah Dasar Linux**
+## **1. Menampilkan user yang sedang digunakan**
 
-### **1\. Menampilkan user yang sedang digunakan**
-
-`# whoami`
+```bash
+whoami
+```
 
 Menampilkan nama user saat ini.
 
-### **2\. Menampilkan siapa saja user yang login**
+## **2. Menampilkan siapa saja user yang login**
 
-`# who`
+```bash
+who
+```
 
 Menampilkan daftar semua user yang sedang login ke sistem.
 
-### **3\. Menampilkan hostname server**
+## **3. Menampilkan hostname server**
 
-`# hostnamectl`
+```bash
+hostnamectl
+hostname
+```
 
 Menampilkan detail nama host dan informasi sistem lainnya.
 
-### **4\. Menampilkan tanggal dan waktu**
+## **4. Menampilkan tanggal dan waktu**
 
-`# timedatectl`
+```bash
+date
+timedatectl
+```
 
 Menampilkan dan mengatur waktu sistem.
 
-## **Asesment Server**
+# **Asesment Server**
 
-### **1\. Menampilkan sistem operasi yang digunakan**
+## **1. Menampilkan sistem operasi yang digunakan**
 
-`# cat /etc/os-release`
+```bash
+cat /etc/os-release
+```
 
 Menampilkan informasi OS Linux.
 
-### **2\. Menampilkan nama kernel**
+## **2. Menampilkan nama kernel**
 
-`# uname`
+```bash
+uname
+```
 
 Menampilkan nama sistem kernel.
 
-### **3\. Menampilkan info prosesor**
+## **3. Menampilkan info prosesor**
 
-`# lscpu`
+```bash
+lscpu
+```
 
 Menampilkan informasi CPU/arsitektur.
 
-### **4\. Menampilkan penggunaan RAM**
+## **4. Menampilkan penggunaan RAM**
 
-`# free -h`
+```bash
+free -h
+```
 
 Menampilkan penggunaan memori secara ringkas (dalam format human-readable).
 
-### **5\. Menampilkan partisi/penyimpanan**
+## **5. Menampilkan partisi/penyimpanan**
 
-`# lsblk`
+```bash
+lsblk
+df -h
+```
 
-Menampilkan daftar partisi disk.
-
-`# df -h`
-
-Menampilkan penggunaan disk (format terbaca manusia).
+Menampilkan daftar partisi disk dan penggunaan disk.
 
 # **Manajemen File & Direktori**
 
 ## **Manajemen Direktori**
 
-### **1\. Membuat direktori**
+### **1. Membuat direktori**
 
-`# mkdir idn`
+```bash
+mkdir Folder1
+```
 
-Membuat folder baru bernama `idn`.
+Membuat folder baru bernama `Folder1`.
 
-### **2\. Masuk dan keluar direktori**
+### **2. Masuk dan keluar direktori**
 
-`# cd idn`
+```bash
+cd Folder1
+```
 
-Masuk ke direktori `idn`.
+Masuk ke direktori `Folder1`.
 
-### 3\. Menampilkan isi direktori
+### **3. Menampilkan isi direktori**
 
-`# ls`
+```bash
+ls
+```
 
 Melihat isi folder.
 
-### 4\. Menampilkan path lokasi saat ini
+### **4. Menampilkan path lokasi saat ini**
 
-`# pwd`
+```bash
+pwd
+```
 
 Menampilkan direktori aktif saat ini.
 
-### 5\. Menghapus direktori kosong
+### **5. Menghapus direktori kosong**
 
-`# rmdir idn`
+```bash
+rmdir Folder1
+```
 
-Menghapus folder `idn` jika kosong.
+Menghapus folder `Folder1` jika kosong.
 
 # **Manajemen File**
 
-### **1\. Membuat file kosong**
+### **1. Membuat file kosong**
 
-`# touch file1.txt`
+```bash
+touch file1.txt
+```
 
-Membuat file kosong bernama `workshop`.
+Membuat file kosong bernama `file1.txt`.
 
-### **2\. Membuat file berisi teks**
+### **2. Membuat file berisi teks**
 
-`# echo "Hello World" >> file2.txt`
+```bash
+echo "Hello World" >> file2.pdf
+```
 
-Menambahkan "Hello World" ke file `idn_workshop`.
+Menambahkan "Hello World" ke file `file2.pdf`.
 
-### **3\. Menampilkan isi file**
+### **3. Menampilkan isi file**
 
-`# cat file2.txt`
+```bash
+cat file2.txt
+```
 
 Menampilkan isi seluruh file.
 
-### **4\. Menampilkan 10 baris pertama/terakhir file** 
+### **4. Menampilkan 10 baris pertama/terakhir file**
 
-`# head /folder/file tujuan`
+```bash
+head /folder/file_tujuan
+tail /folder/file_tujuan
+```
 
-Menampilkan 10 baris awal file syslog.
+Menampilkan 10 baris awal dan akhir file.
 
-`# tail /folder/file tujuan`
+### **5. Menghapus file**
 
-Menampilkan 10 baris akhir.
+```bash
+rm file1.txt
+```
 
-### **5\. Menghapus file**
+Menghapus file bernama `file1.txt`.
 
-`# rm file1.txt`
+### **6. Menyalin file atau folder**
 
-Menghapus file bernama `workshop`.
-
-### **6\. Menyalin file atau folder**
-
-`# cp idn_workshop ~/sysadmin`
+```bash
+cp file1.txt /mnt
+```
 
 Menyalin file ke direktori lain.
 
-### 7\. **Memindahkan atau mengubah nama file/folder**
+### **7. Memindahkan atau mengubah nama file/folder**
 
-`# mv idn_workshop nama_peserta`
+```bash
+mv file1.txt /mnt/file1.jpg
+```
 
 Memindahkan/rename file.
 
@@ -180,208 +225,302 @@ Memindahkan/rename file.
 
 ## **User**
 
-### **1\. Membuat user baru**
+### **1. Membuat user baru**
 
-`# adduser nama_peserta`
+```bash
+adduser nama_peserta
+```
 
 Membuat user sistem baru.
 
-### **2\. Melihat daftar user**
+### **2. Melihat daftar user**
 
-`# cat /etc/passwd`
+```bash
+cat /etc/passwd
+```
 
 Menampilkan seluruh user.
 
-### **3\. Mengubah password user**
+### **3. Mengubah password user**
 
-`# passwd nama_user`
+```bash
+passwd nama_user
+```
 
 Mengatur atau mengubah password user.
 
-### **4\. Mengubah ID user atau menambahkan ke grup**
+### **4. Mengubah ID user atau menambahkan ke grup**
 
-`# usermod -u 10000 jingga`  
-`# usermod -aG nama_group nama_user`
+```bash
+usermod -u 10000 jingga
+usermod -aG nama_group nama_user
+```
 
 Mengubah UID user dan menambahkan user ke grup.
 
 ## **Grup**
 
-### **1\. Membuat grup baru**
+### **1. Membuat grup baru**
 
-`# groupadd idn_workshop`
+```bash
+groupadd developer
+```
 
-Membuat grup `idn`.
+Membuat grup `developer`.
 
-### **2\. Melihat daftar grup**
+### **2. Melihat daftar grup**
 
-`# cat /etc/group`
+```bash
+cat /etc/group
+```
 
 Melihat seluruh grup.
 
-### **3\. Mengganti nama grup**
+### **3. Mengganti nama grup**
 
-`# groupmod -n nama_baru nama_lama`
+```bash
+groupmod -n nama_baru nama_lama
+```
 
 Mengubah nama grup.
 
-### **4\. Menghapus grup**
+### **4. Menghapus grup**
 
-`# groupdel nama_grup`
+```bash
+groupdel nama_grup
+```
 
 Menghapus grup tertentu.
 
-## **Hak Akses & Kepemilikan**
+# **Hak Akses & Kepemilikan**
 
-### **1\. Mengatur hak akses file**
+## **1. Mengatur hak akses file**
 
-`# chmod 640 file_name`
+```bash
+chmod 640 file_name
+```
 
 Memberi izin baca & tulis ke owner, baca ke grup, tidak ada akses untuk lainnya.
 
-### **2\. Mengubah kepemilikan file**
+## **2. Mengubah kepemilikan file**
 
-`# chown nama_user file_name`
+```bash
+chown nama_user file_name
+```
 
 Mengganti pemilik file.
 
-### **3\. Mengubah grup dari file**
+## **3. Mengubah grup dari file**
 
-`# chgrp nama_grup file_name`
+```bash
+chgrp nama_grup file_name
+```
 
 Mengganti grup pemilik file.
 
-## **Apa Itu WebServer**
+# **Apa Itu WebServer**
 
 **Web Server** adalah software yang digunakan untuk menyimpan, memproses, dan mengirimkan halaman web ke client melalui jaringan. **Web Server** menggunakan protokol **HTTP (80)** atau **HTTPS (443)**.
 
-## **Installation**
+# **Installation**
 
-Jadi disini kita akan melakukan instalasi webserver dengan menggunakan apache,apa itu apache merupakan sebuah perangkat lunak server web gratis dan open-source yang populer, dikelola oleh Apache Software Foundation.
+Jadi disini kita akan melakukan instalasi webserver dengan menggunakan apache, apa itu apache merupakan sebuah perangkat lunak server web gratis dan open-source yang populer, dikelola oleh Apache Software Foundation.
 
-Langkah-langkah instalasi:
+**Langkah-langkah instalasi:**
 
-1. Update si ubuntunya lalu install sekalian saja si apache2-nya:  
-   * `# apt update -y && apt upgrade -y`  
-   * `# apt install apache2 -y`  
-2. Lalu setelah Update dan instalasinya selesai selanjutanya verifikasi service apache2 apakah dia sudah berjalan.  
-   * `# systemctl status apache2`  
-3. Jika statusnya sudah active kita bisa coba akses IP server kita masuk ke browser bisa menggunakan chrome,firefox,microsoft egde dll.  
-   * http://(IP server).
+```bash
+apt update -y && apt upgrade -y
+apt install apache2 -y
+systemctl status apache2
+```
 
-## **1\. Install paket**
+Jika statusnya sudah active kita bisa coba akses IP server kita masuk ke browser bisa menggunakan chrome, firefox, microsoft edge dll:
 
-`# apt install mysql-server php php-mysql libapache2-mod-php php-cli php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip unzip wget -y`
+```text
+http://IP-SERVER
+```
 
-* **Apache2** → web server.  
-* **MySQL Server** → database.  
-* **PHP & modul** → untuk menjalankan WordPress.
+# Konfigurasi Virtual Host Apache (games)
 
-## **2\. Konfigurasi MySQL**
+## 1. Persiapan Source Code
 
-Jalankan:
+Siapkan terlebih dahulu source code project. Teman-teman bisa mencari di GitHub atau platform lain.
 
-`# mysql_secure_installation`
+```bash
+git clone https://github.com/TomMalbran/games.git
+```
 
-Ikuti:
+## 2. Pindahkan Folder ke `/var/www`
 
-* Set password root MySQL (jika belum).  
-* Remove anonymous users: **Y**  
-* Disallow root login remotely: **Y**  
-* Remove test database: **Y**  
-* Reload privileges: **Y**
+Setelah repository berhasil di-clone, pindahkan folder `games` ke direktori web root Apache:
 
-Login ke MySQL:
+```bash
+mv games/ /var/www/
+ls /var/www/
+```
 
-`# mysql`
+Output:
 
-Buat database & user WordPress:
+```text
+games  html
+```
 
-`# CREATE DATABASE wordpress_db;`  
-`# CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'P@ssw0rd2025';`  
-`# SELECT User, Host FROM mysql.user;`  
-`# GRANT ALL PRIVILEGES ON *.* TO 'wpuser'@'localhost';`  
-`# FLUSH PRIVILEGES;`  
-`# EXIT;`
+## 3. Copy Konfigurasi Virtual Host Default
 
-## **3\. Download & install WordPress**
+Masuk ke direktori konfigurasi virtual host Apache:
 
-Pindah ke folder web:
+```bash
+cd /etc/apache2/sites-available/
+cp 000-default.conf games.conf
+```
 
-`# cd /var/www/html`  
-`# rm index.html`
+## 4. Edit File `games.conf`
 
-Download:
+Edit file `games.conf` menggunakan editor favorit (vim/nano/vi/pico):
 
-`# wget https://wordpress.org/latest.tar.gz`
+```bash
+vim games.conf
+```
 
-Ekstrak:
+Isi konfigurasi:
 
-`# tar -xvzf latest.tar.gz`
+```apache
+<VirtualHost *:80>
 
-Pindahkan isi folder **wordpress** ke `/var/www/html`:
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/games
 
-`# mv wordpress/* .`
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-Hapus file yang tidak perlu:
+</VirtualHost>
+```
 
-`# rm -rf wordpress latest.tar.gz`
+Simpan file (**SAVE**).
 
-## **4\. Set permission**
+## 5. Disable Default Site & Enable VHost Baru
 
-`# chown -R www-data:www-data /var/www/html/`  
-`# chmod -R 755 /var/www/html/`
+```bash
+a2dissite 000-default.conf
+a2ensite games.conf
+systemctl reload apache2
+```
 
-## **5\. Konfigurasi Apache untuk WordPress**
+## 6. Akses Website
 
-Buat VirtualHost:
+Buka browser (Google/Chrome/Firefox) dan akses server:
 
-`# vim /etc/apache2/sites-available/wordpress.conf`
+```text
+http://IP-SERVER
+```
 
-Isi:
+Website akan berubah dan menampilkan project **games**.
 
-`<VirtualHost *:80>`  
-    `ServerAdmin admin@example.com`  
-    `DocumentRoot /var/www/html`  
-    `ServerName localhost`
+## Catatan
 
-    `<Directory /var/www/html>`  
-        `Options Indexes FollowSymLinks`  
-        `AllowOverride All`  
-        `Require all granted`  
-    `</Directory>`
+Pastikan permission folder benar:
 
-    `ErrorLog ${APACHE_LOG_DIR}/error.log`  
-    `CustomLog ${APACHE_LOG_DIR}/access.log combined`  
-`</VirtualHost>`
+```bash
+chown -R www-data:www-data /var/www/games
+chmod -R 755 /var/www/games
+```
 
-Simpan, lalu jalankan:
+Jika tidak tampil, cek log:
 
-`# a2ensite wordpress.conf`  
-`# a2enmod rewrite`  
-`# systemctl restart apache2`
+```bash
+tail -f /var/log/apache2/error.log
+```
 
-## **6\. Konfigurasi WordPress**
+Siap untuk upload ke GitHub sebagai dokumentasi konfigurasi Virtual
 
-Salin file konfigurasi contoh:
 
-`# cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php`
+# **Install Paket WordPress**
 
-Edit:
+```bash
+apt install mysql-server php php-mysql libapache2-mod-php php-cli php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip unzip wget -y
+```
 
-`# vim /var/www/html/wp-config.php`
+# **Konfigurasi MySQL**
 
-Ubah bagian database:
+```bash
+mysql_secure_installation
+mysql
+```
 
-`define( 'DB_NAME', 'wordpress_db' );`  
-`define( 'DB_USER', 'wpuser' );`  
-`define( 'DB_PASSWORD', 'P@ssw0rd2025' );`  
-`define( 'DB_HOST', 'localhost' );`
+```sql
+CREATE DATABASE wordpress_db;
+CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'P@ssw0rd2025';
+SELECT User, Host FROM mysql.user;
+GRANT ALL PRIVILEGES ON *.* TO 'wpuser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
 
-Simpan
+# **Download & Install WordPress**
 
-## **7\. Akses WordPress**
+```bash
+cd /var/www/html
+rm index.html
+wget https://wordpress.org/latest.tar.gz
+tar -xvzf latest.tar.gz
+mv wordpress/* .
+rm -rf wordpress latest.tar.gz
+```
 
-Buka browser → `http://IP-SERVER/`  
-Lanjutkan wizard instalasi WordPress.
+# **Set Permission**
 
+```bash
+chown -R www-data:www-data /var/www/html/
+chmod -R 755 /var/www/html/
+```
+
+# **Konfigurasi Apache untuk WordPress**
+
+```bash
+vim /etc/apache2/sites-available/wordpress.conf
+```
+
+```apache
+<VirtualHost *:80>
+    ServerAdmin admin@example.com
+    DocumentRoot /var/www/html
+    ServerName localhost
+
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+```bash
+a2ensite wordpress.conf
+a2enmod rewrite
+systemctl restart apache2
+```
+
+# **Konfigurasi WordPress**
+
+```bash
+cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+vim /var/www/html/wp-config.php
+```
+
+```php
+define( 'DB_NAME', 'wordpress_db' );
+define( 'DB_USER', 'wpuser' );
+define( 'DB_PASSWORD', 'P@ssw0rd2025' );
+define( 'DB_HOST', 'localhost' );
+```
+
+# **Akses WordPress**
+
+```text
+http://IP-SERVER/
+```
+
+Lanjutkan wizard instalasi WordPress sampai selesai.
