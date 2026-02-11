@@ -12,12 +12,12 @@ Untuk Cron Jobs sendiri kita harus setting sesuai kebutuhan kita untuk contoh si
 
 buat file yang akan di eksekusi terlebih dahulu.  
 ```
-echo "date" \> [date.sh](http://date.sh)
+echo "date" > date.sh
 ```
 
 setelah file terbuat kita berikan permission x (execute) agar perintah tersebut bisa di jalankan.  
 ```
-chmod \+x [date.sh](http://date.sh)
+chmod +x date.sh
 ```
 
 coba jalankan terlebih dahulu perintahnya sebelum kita masukan ke dalam konfigurasi Crontab.  
@@ -27,19 +27,19 @@ coba jalankan terlebih dahulu perintahnya sebelum kita masukan ke dalam konfigur
 
 jalankan perintah berikut untuk masuk ke dalam konfigurasi crontab  
 ```
-crontab \-e
+crontab -e
 ```
 
 Scroll kebagian paling bawah tambahkan konfigurasi berikut dan save.  
 ```
-* * * * * ./date.sh \>\> /var/log/date.log
+* * * * * ./date.sh >> /var/log/date.log
 ```
 
 jadi konfigurasi crontab di atas akan menjalankan perintah “date” setiap satu menit sekali dan nanti untuk hasilnya akan di taro di dalam directory /var/log/.
 
 untuk cek bisa menggunakan perintah tail.  
 ```
-tail \-f /var/log/date.log
+tail -f /var/log/date.log
 ```
 
 Progress dikit-dikit, asal gas terus 😎
