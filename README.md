@@ -7,9 +7,6 @@ Repository ini berisi panduan praktik **Linux dasar, Web Server Apache, Virtual 
 - Perintah dasar Linux
 - Manajemen file, user, dan grup
 - Instalasi Apache
-- Konfigurasi Virtual Host
-- Instalasi LAMP
-- Instalasi & konfigurasi WordPress
 
 ## Cara Pakai
 Ikuti langkah-langkah konfigurasi secara berurutan sesuai dokumentasi modul.
