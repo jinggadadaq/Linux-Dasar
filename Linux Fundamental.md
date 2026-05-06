@@ -434,93 +434,79 @@ tail -f /var/log/apache2/error.log
 Siap untuk upload ke GitHub sebagai dokumentasi konfigurasi Virtual
 
 
-# **Install Paket WordPress**
+# **Install Database MYSQL**
 
 ```bash
-apt install mysql-server php php-mysql libapache2-mod-php php-cli php-curl php-gd php-mbstring php-xml php-xmlrpc php-zip unzip wget -y
+apt install mysql-server php -y
 ```
-
-# **Konfigurasi MySQL**
+masuk kedalam database
 
 ```bash
-mysql_secure_installation
 mysql
 ```
 
+**Membuat database**
 ```sql
-CREATE DATABASE wordpress_db;
-CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'P@ssw0rd2025';
-SELECT User, Host FROM mysql.user;
-GRANT ALL PRIVILEGES ON *.* TO 'wpuser'@'localhost';
+CREATE DATABASE db_sekolah;
+```
+
+**Melihat database**
+```sql
+SHOW DATABASES;
+```
+
+**Membuat user dan password**
+```sql
+CREATE USER 'adminsekolah'@'localhost' IDENTIFIED BY 'password123';
+```
+
+**Setting privileges**
+```sql
+GRANT ALL PRIVILEGES ON db_sekolah.* TO 'adminsekolah'@'localhost';
 FLUSH PRIVILEGES;
+```
+
+**Menggunakan/masuk Database**
+```sql
+USE db_sekolah;
+```
+
+**Membuat Table (Contoh: Data Siswa)**
+```sql
+CREATE TABLE siswa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100),
+    kelas VARCHAR(10),
+    alamat TEXT
+);
+```
+
+**Insert data siswa/siswi**
+```sql
+INSERT INTO siswa (nama, kelas, alamat) VALUES
+('Jingga', 'XII TKJ', 'Banyumas'),
+('Budi', 'XI TKJ', 'Purbalingga'),
+('Siti', 'X TKJ', 'Semarang');
+```
+
+**Melihat Isi Table**
+```sql
+SELECT * FROM siswa;
+```
+
+**Keluar dari MYSQL**
+```sql
 EXIT;
 ```
 
-# **Download & Install WordPress**
-
+**Install phpMyAdmin**
 ```bash
-cd /var/www/html
-rm index.html
-wget https://wordpress.org/latest.tar.gz
-tar -xvzf latest.tar.gz
-mv wordpress/* .
-rm -rf wordpress latest.tar.gz
+apt install phpmyadmin -y
 ```
 
-# **Set Permission**
-
+**Aktifkan phpMyAdmin ke Apache**
 ```bash
-chown -R www-data:www-data /var/www/html/
-chmod -R 755 /var/www/html/
-```
-
-# **Konfigurasi Apache untuk WordPress**
-
-```bash
-vim /etc/apache2/sites-available/wordpress.conf
-```
-
-```apache
-<VirtualHost *:80>
-    ServerAdmin admin@example.com
-    DocumentRoot /var/www/html
-    ServerName localhost
-
-    <Directory /var/www/html>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-```bash
-a2ensite wordpress.conf
-a2enmod rewrite
+ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 systemctl restart apache2
 ```
 
-# **Konfigurasi WordPress**
-
-```bash
-cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-vim /var/www/html/wp-config.php
-```
-
-```php
-define( 'DB_NAME', 'wordpress_db' );
-define( 'DB_USER', 'wpuser' );
-define( 'DB_PASSWORD', 'P@ssw0rd2025' );
-define( 'DB_HOST', 'localhost' );
-```
-
-# **Akses WordPress**
-
-```text
-http://IP-SERVER/
-```
-
-Lanjutkan wizard instalasi WordPress sampai selesai.
